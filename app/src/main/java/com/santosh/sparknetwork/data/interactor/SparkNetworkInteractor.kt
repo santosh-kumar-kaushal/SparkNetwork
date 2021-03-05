@@ -6,5 +6,5 @@ import io.reactivex.Single
 
 class SparkNetworkInteractor(private val apiService: ApiService) {
 
-    fun getPersonalityTestQuestionList(fileName: String): Single<SparkNetwork> = apiService.getPersonalityTestQuestionList(fileName)
+    fun getPersonalityTestList(fileName: String): Single<SparkNetwork> = apiService.getPersonalityTestQuestionList(fileName)
 }

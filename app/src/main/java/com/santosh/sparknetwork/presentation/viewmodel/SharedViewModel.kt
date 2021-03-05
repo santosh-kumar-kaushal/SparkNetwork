@@ -5,9 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.santosh.sparknetwork.data.source.remote.RxSingleSchedulers
+import com.santosh.sparknetwork.domain.model.PersonalityTestData
+import com.santosh.sparknetwork.domain.model.Question
 import com.santosh.sparknetwork.domain.model.SparkNetwork
 import com.santosh.sparknetwork.domain.usecase.GetPersonalityQuestionUseCase
 import com.santosh.sparknetwork.util.*
+import io.reactivex.schedulers.Schedulers
 
 class SharedViewModel(
     private var getPersonalityQuestionUseCase: GetPersonalityQuestionUseCase,
@@ -26,7 +29,7 @@ class SharedViewModel(
     }
 
     private fun handlePostCategoryList(sparkNetwork: SparkNetwork) {
-        _uiState.value = RetrievedPostState(sparkNetwork.categories)
+        _uiState.value = RetrievedPostState(sparkNetwork)
     }
 
     private fun handleFailure(t: Throwable) {
@@ -37,11 +40,15 @@ class SharedViewModel(
     }
 
     @SuppressLint("CheckResult")
-    fun fetchCategoryList(fileName: String) {
-        getPersonalityQuestionUseCase.getPersonalityTestQuestionList(fileName)
+    fun fetchSparkNetworkPersonalityTestList(fileName: String) {
+        getPersonalityQuestionUseCase.getPersonalityTestList(fileName)
             .compose(rxSingleSchedulers.applySchedulers())
             .doOnSubscribe { handleLoadingState() }
             .map { sparkNetwork -> sparkNetwork }
             .subscribe(this::handlePostCategoryList, this::handleFailure)
+    }
+
+    fun storeData(personalityTestData: PersonalityTestData) {
+        getPersonalityQuestionUseCase.storeData(personalityTestData).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe()
     }
 }

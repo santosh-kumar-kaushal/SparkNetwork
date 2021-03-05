@@ -21,6 +21,7 @@ class SparkApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        instance=this
         MultiDex.install(this)
         startKoin(
             this, listOf(

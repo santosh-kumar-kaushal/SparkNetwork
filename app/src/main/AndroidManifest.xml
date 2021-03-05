@@ -18,7 +18,8 @@
         android:theme="@style/Theme.SparkNetwork"
         tools:targetApi="n"
         tools:ignore="AllowBackup">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="unspecified">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

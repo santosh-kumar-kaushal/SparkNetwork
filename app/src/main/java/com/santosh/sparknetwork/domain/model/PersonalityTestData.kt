@@ -8,5 +8,6 @@ import androidx.room.PrimaryKey
 data class PersonalityTestData(
     @PrimaryKey
     @ColumnInfo(name = "question")var question: String,
+    @ColumnInfo(name = "category")var category: String,
     @ColumnInfo(name = "selectedOption")var selectedOption: String
 )

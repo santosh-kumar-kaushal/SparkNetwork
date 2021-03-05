@@ -11,10 +11,14 @@
         android:label="Categories"
         tools:layout="@layout/fragment_category">
         <action
-            android:id="@+id/action_categoryFragment_to_firstFragment"
+            android:id="@+id/action_categoryFragment_to_QuestionFragment"
             app:destination="@id/questionFragment"
-            app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/categoryFragment"
+            app:popUpToInclusive="true"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
 
     <fragment
@@ -22,5 +26,27 @@
         android:name="com.santosh.sparknetwork.presentation.questions.QuestionFragment"
         android:label="Questions"
         tools:layout="@layout/fragment_questions">
+
+        <action
+            android:id="@+id/action_QuestionFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
+        <argument
+            android:name="questionList"
+            app:argType="com.santosh.sparknetwork.domain.model.Question" />
     </fragment>
+
+    <dialog
+        android:id="@+id/bottomSheet"
+        android:name="com.santosh.sparknetwork.presentation.questions.BottomSheetFragment"
+        tools:layout="@layout/bottom_sheet_dialog_fragment">
+        <argument
+            android:name="ifPositive"
+            app:argType="com.santosh.sparknetwork.domain.model.IfPositive" />
+    </dialog>
 </navigation>

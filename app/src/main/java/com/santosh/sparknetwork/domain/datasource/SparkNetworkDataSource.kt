@@ -4,5 +4,5 @@ import com.santosh.sparknetwork.domain.model.SparkNetwork
 import io.reactivex.Single
 
 interface SparkNetworkDataSource {
-    fun getPersonalityTestQuestionList(fileName: String): Single<SparkNetwork>
+    fun getPersonalityTestList(fileName: String): Single<SparkNetwork>
 }

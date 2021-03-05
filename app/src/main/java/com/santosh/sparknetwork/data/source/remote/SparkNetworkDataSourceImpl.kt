@@ -7,6 +7,6 @@ import io.reactivex.Single
 
 class SparkNetworkDataSourceImpl(private val sparkNetworkInteractor: SparkNetworkInteractor) : SparkNetworkDataSource {
 
-    override fun getPersonalityTestQuestionList(fileName: String): Single<SparkNetwork> = sparkNetworkInteractor.getPersonalityTestQuestionList(fileName)
+    override fun getPersonalityTestList(fileName: String): Single<SparkNetwork> = sparkNetworkInteractor.getPersonalityTestList(fileName)
 
 }
