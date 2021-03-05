@@ -2,8 +2,6 @@ package com.santosh.sparknetwork
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.santosh.sparknetwork.presentation.category.CategoryViewModel
-import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 

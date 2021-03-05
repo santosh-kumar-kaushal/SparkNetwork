@@ -3,11 +3,11 @@ package com.santosh.sparknetwork.domain.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class SparkNetwork(
-    @SerializedName("categories")
+data class QuestionTypeForImportant(
+    @SerializedName("type")
     @Expose
-    var categories: List<String>,
-    @SerializedName("questions")
+    var type: String,
+    @SerializedName("range")
     @Expose
-    var questions: List<Question>
+    var range: Range
 )

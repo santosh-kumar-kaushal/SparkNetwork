@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/categoryFragment"
         android:name="com.santosh.sparknetwork.presentation.category.CategoryFragment"
-        android:label="fragment_registration"
+        android:label="Categories"
         tools:layout="@layout/fragment_category">
         <action
             android:id="@+id/action_categoryFragment_to_firstFragment"
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/questionFragment"
         android:name="com.santosh.sparknetwork.presentation.questions.QuestionFragment"
-        android:label="first_fragment"
+        android:label="Questions"
         tools:layout="@layout/fragment_questions">
     </fragment>
 </navigation>

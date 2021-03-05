@@ -2,12 +2,11 @@ package com.santosh.sparknetwork.data.source.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.santosh.sparknetwork.domain.model.SparkNetwork
+import com.santosh.sparknetwork.data.source.local.PersonalityTestDao
+import com.santosh.sparknetwork.domain.model.PersonalityTestData
 
-@Database(entities = [SparkNetwork::class], version = 1, exportSchema = false)
+@Database(entities = [PersonalityTestData::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
+    abstract val personalityTestDao: PersonalityTestDao
 
-    companion object {
-        const val DB_NAME = "sparkNetwork.db"
-    }
 }
