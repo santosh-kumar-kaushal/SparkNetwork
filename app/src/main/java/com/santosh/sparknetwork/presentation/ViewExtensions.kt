@@ -2,7 +2,6 @@ package com.santosh.sparknetwork.presentation
 
 import android.view.View
 
-
 fun View.visible() {
     visibility = View.VISIBLE
 }

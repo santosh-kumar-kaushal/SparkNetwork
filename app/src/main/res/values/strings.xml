@@ -1,9 +1,11 @@
 <resources>
-    <string name="app_name">SparkNetwork</string>
+    <string name="app_name">Spark</string>
     <string name="no_internet">Please check your internet connection!</string>
+    <string name="please_select">Please select one and proceed</string>
     <string name="next">NEXT</string>
     <string name="answer">ANSWER</string>
     <string name="done">DONE</string>
     <string name="submit">SUBMIT</string>
     <string name="years">Years</string>
+    <string name="thanks">Thank you</string>
 </resources>

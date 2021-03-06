@@ -11,8 +11,7 @@ import androidx.viewpager.widget.PagerAdapter
 import com.santosh.sparknetwork.R
 
 class CategoryPagerAdapter(private val context: Context, private val categoryList: List<String>,
-                           private val imageArray:IntArray, private val imageBackGroundArray:IntArray,
-                           private val itemClickListener: (String, Int) -> Unit) : PagerAdapter() {
+                           private val imageArray:IntArray, private val itemClickListener: (String, Int) -> Unit) : PagerAdapter() {
     private lateinit var layoutInflater: LayoutInflater
     private lateinit var btnNext: Button
 
@@ -22,9 +21,6 @@ class CategoryPagerAdapter(private val context: Context, private val categoryLis
         view.findViewById<TextView>(R.id.title).text = categoryList[position]
         view.findViewById<ImageView>(R.id.image).setImageResource(
             imageArray[position]
-        )
-        view.findViewById<ImageView>(R.id.image_bg).setImageResource(
-            imageBackGroundArray[position]
         )
         btnNext = view.findViewById(R.id.nextButton)
         if (position == categoryList.size - 1) {

@@ -27,7 +27,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/image_15" />
+                    android:src="@drawable/image_10" />
 
                     <TextView
                         app:layout_constraintTop_toTopOf="parent"

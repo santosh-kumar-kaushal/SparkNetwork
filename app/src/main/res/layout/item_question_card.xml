@@ -39,6 +39,7 @@
         android:backgroundTint="@color/light_green_600"
         android:gravity="center"
         android:text="@string/next"
+        android:enabled="false"
         android:textColor="@android:color/white"
         android:layout_height="?actionBarSize" />
 

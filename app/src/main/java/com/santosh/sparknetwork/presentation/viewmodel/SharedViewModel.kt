@@ -49,6 +49,17 @@ class SharedViewModel(
     }
 
     fun storeData(personalityTestData: PersonalityTestData) {
-        getPersonalityQuestionUseCase.storeData(personalityTestData).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe()
+        getPersonalityQuestionUseCase.storeData(personalityTestData).subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io()).subscribe()
+    }
+
+    fun filteredQuestion(questionList: List<Question>, category: String): List<Question> {
+        val filteredQuestList: MutableList<Question> = mutableListOf()
+        for (question in questionList) {
+            if (category == question.category) {
+                filteredQuestList.add(question)
+            }
+        }
+        return filteredQuestList
     }
 }

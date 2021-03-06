@@ -1,5 +1,6 @@
 package com.santosh.sparknetwork.presentation.category
 
+import android.annotation.SuppressLint
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.View
@@ -23,8 +24,11 @@ import com.santosh.sparknetwork.presentation.visible
 import com.santosh.sparknetwork.util.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
+
 private const val FILE_NAME = "personality_test.json"
-const val QUESTION_LIST="questionList"
+const val QUESTION_LIST = "questionList"
+const val CURRENT_POSITION = "currentPosition"
+
 class CategoryFragment : BaseFragment(R.layout.fragment_category) {
 
     private lateinit var viewPager: ViewPager
@@ -33,13 +37,17 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
     private lateinit var progressBar: ProgressBar
     private var totalSize: Int = 0
     private lateinit var questionList: List<Question>
-
-
     private val sharedViewModel: SharedViewModel by viewModel()
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun setUpView() {
         viewPager = rootView.findViewById(R.id.view_pager)
+        arguments?.getInt(CURRENT_POSITION)?.let {
+            val current = viewPager.currentItem + it+1
+            viewPager.postDelayed({ viewPager.currentItem = current }, 1000)
+        }
         viewPager.setPageTransformer(true, DepthPageTransformer())
+        viewPager.setOnTouchListener { _, _ -> true }
         dotsLayout = rootView.findViewById(R.id.layoutDots)
         progressBar = rootView.findViewById(R.id.progressBar)
     }
@@ -107,14 +115,15 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
                     progressBar.gone()
                 }
                 is RetrievedPostState -> {
-                    totalSize = state.sparkNetwork.categories.size
+                    questionList = state.sparkNetwork.questions
+                    val thankYou = listOf(getString(R.string.thanks))
+                    val categoryList = state.sparkNetwork.categories + thankYou
+                    totalSize = categoryList.size
                     bottomProgressDots(0, totalSize)
-                    questionList=state.sparkNetwork.questions
                     categoryPagerAdapter = CategoryPagerAdapter(
                         requireContext(),
-                        state.sparkNetwork.categories,
+                        categoryList,
                         categoryImageArray,
-                        categoryBackgroundArray,
                         ::itemClickListener
                     )
                     viewPager.adapter = categoryPagerAdapter
@@ -125,15 +134,17 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
         }
     }
 
-    private fun itemClickListener(item: String, position: Int) {
-//        val current = viewPager.currentItem + 1
-//        if (current < totalSize) {
-//            viewPager.currentItem = current
-//        } else {
-//            activity?.finish()
-//        }
-        val bundle = bundleOf(QUESTION_LIST to questionList)
-        Navigation.findNavController(rootView).navigate(R.id.action_categoryFragment_to_QuestionFragment,bundle)
+    private fun itemClickListener(category: String, position: Int) {
+        val current = viewPager.currentItem + 1
+        if (current > totalSize) {
+            activity?.finish()
+        } else {
+            val filteredQuestions = sharedViewModel.filteredQuestion(questionList, category)
+            val bundle = bundleOf(QUESTION_LIST to filteredQuestions, CURRENT_POSITION to position)
+            Navigation.findNavController(rootView)
+                .navigate(R.id.action_categoryFragment_to_QuestionFragment, bundle)
+        }
+
     }
 
 }

@@ -7,10 +7,10 @@ import com.santosh.sparknetwork.domain.model.PersonalityTestData
 interface PersonalityTestDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(personalityTestData: PersonalityTestData): Long
+    fun insert(personalityTestData: PersonalityTestData)
 
     @Query("SELECT * FROM PersonalityTestData")
-    fun loadAll(): MutableList<PersonalityTestData>
+    fun loadAll(): List<PersonalityTestData>
 
     @Query("DELETE FROM PersonalityTestData")
     fun deleteAll()
