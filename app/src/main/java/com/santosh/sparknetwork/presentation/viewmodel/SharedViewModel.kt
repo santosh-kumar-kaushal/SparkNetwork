@@ -10,6 +10,8 @@ import com.santosh.sparknetwork.domain.model.Question
 import com.santosh.sparknetwork.domain.model.SparkNetwork
 import com.santosh.sparknetwork.domain.usecase.GetPersonalityQuestionUseCase
 import com.santosh.sparknetwork.util.*
+import io.reactivex.Completable
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 class SharedViewModel(
@@ -49,7 +51,8 @@ class SharedViewModel(
     }
 
     fun storeData(personalityTestData: PersonalityTestData) {
-        getPersonalityQuestionUseCase.storeData(personalityTestData).subscribeOn(Schedulers.io())
+        getPersonalityQuestionUseCase.storePersonalityTestData(personalityTestData)
+            .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io()).subscribe()
     }
 
@@ -61,5 +64,10 @@ class SharedViewModel(
             }
         }
         return filteredQuestList
+    }
+
+    fun postPersonalityTestData(): Completable = Completable.fromAction {
+        getPersonalityQuestionUseCase.postPersonalityTestData().subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io()).subscribe()
     }
 }

@@ -5,6 +5,7 @@ import com.santosh.sparknetwork.data.source.local.PersonalityTestDao
 import com.santosh.sparknetwork.data.source.local.PersonalityTestDataSourceImpl
 import com.santosh.sparknetwork.domain.model.PersonalityTestData
 import com.santosh.sparknetwork.util.RxImmediateSchedulerRule
+import com.santosh.sparknetwork.util.mock
 import com.santosh.sparknetwork.util.whenever
 import org.junit.Before
 import org.junit.Rule
@@ -53,7 +54,7 @@ class PersonalityTestDataSourceImplTest {
 
     @Test
     fun testInsertSparkData() {
-        val personalityTestData= PersonalityTestData("","","")
+        val personalityTestData= mock<PersonalityTestData>()
         personalityTestDataSourceImpl.insertPersonalityTestAnswer(personalityTestData).test().run {
             awaitTerminalEvent()
             assertComplete()

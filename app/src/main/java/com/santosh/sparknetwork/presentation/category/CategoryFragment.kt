@@ -43,7 +43,7 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
     override fun setUpView() {
         viewPager = rootView.findViewById(R.id.view_pager)
         arguments?.getInt(CURRENT_POSITION)?.let {
-            val current = viewPager.currentItem + it+1
+            val current = viewPager.currentItem + it + 1
             viewPager.postDelayed({ viewPager.currentItem = current }, 1000)
         }
         viewPager.setPageTransformer(true, DepthPageTransformer())
@@ -137,6 +137,7 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
     private fun itemClickListener(category: String, position: Int) {
         val current = viewPager.currentItem + 1
         if (current > totalSize) {
+            sharedViewModel.postPersonalityTestData()
             activity?.finish()
         } else {
             val filteredQuestions = sharedViewModel.filteredQuestion(questionList, category)

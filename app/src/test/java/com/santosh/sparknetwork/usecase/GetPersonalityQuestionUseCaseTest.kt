@@ -64,7 +64,7 @@ class GetPersonalityQuestionUseCaseTest {
 
         val testObserver = TestObserver<SparkNetwork>()
 
-        getPersonalityQuestionUseCase.storeData(personalityTestData).subscribe(testObserver)
+        getPersonalityQuestionUseCase.storePersonalityTestData(personalityTestData).subscribe(testObserver)
         testObserver.assertComplete()
     }
 
