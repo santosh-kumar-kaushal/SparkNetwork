@@ -11,7 +11,6 @@ import com.santosh.sparknetwork.domain.model.SparkNetwork
 import com.santosh.sparknetwork.domain.usecase.GetPersonalityQuestionUseCase
 import com.santosh.sparknetwork.util.*
 import io.reactivex.Completable
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 class SharedViewModel(

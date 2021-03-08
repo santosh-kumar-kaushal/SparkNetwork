@@ -90,6 +90,13 @@ class SharedViewModelTest {
     }
 
     @Test
+    fun testFilterQuestionsBasedOnCategory() {
+        val list= listOf<Question>()
+        viewModel.filteredQuestion(list,category)
+        assertNotNull(list)
+    }
+
+    @Test
     fun testPersonalityDataStore() {
         val personalityTestData= mock<PersonalityTestData>()
         whenever(
@@ -97,13 +104,6 @@ class SharedViewModelTest {
         ).thenReturn(Completable.complete())
         viewModel.storeData(personalityTestData)
         verify(useCaseMocked).storePersonalityTestData(personalityTestData)
-    }
-
-    @Test
-    fun testFilterQuestionsBasedOnCategory() {
-        val list= listOf<Question>()
-        viewModel.filteredQuestion(list,category)
-        assertNotNull(list)
     }
 
     @Test

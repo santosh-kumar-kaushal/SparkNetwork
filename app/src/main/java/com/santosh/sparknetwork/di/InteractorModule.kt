@@ -12,5 +12,4 @@ val interactorModule = module {
         )
     }
     single { provideSparkNetworkInteractor(get()) }
-
 }
