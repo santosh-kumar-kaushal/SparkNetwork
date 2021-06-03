@@ -26,9 +26,4 @@
 - Junit tests Added.
 - Ui tests added.
 
-### Note
-
-- Assignment for position - Senior Android Developer.
-- This assignment is fully focused on app side of work.
-- I have basic knowldege of Node.js and MongoDB. 
 
